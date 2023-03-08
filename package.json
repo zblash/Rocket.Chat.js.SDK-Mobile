@@ -1,20 +1,12 @@
 {
-  "name": "@rocket.chat/sdk",
+  "name": "rocketchat-js-mobile-sdk",
   "version": "1.3.0-mobile",
   "description": "Node.js SDK for Rocket.Chat. Application interface for server methods and message streams.",
   "main": "index.ts",
   "types": "index.d.ts",
   "sideEffects": false,
-  "repository": "https://github.com/RocketChat/Rocket.Chat.js.SDK.git",
-  "author": "Tim Kinnane <tim.kinnane@rocket.chat>",
-  "contributors": [
-    "Mikael Mello (https://github.com/mikaelmello)",
-    "José Renan (https://github.com/JoseRenan)",
-    "Renato Becker (https://github.com/renatobecker)",
-    "Guilherme Gazzo (https://github.com/ggazzo)",
-    "Sing Li (https://github.com/Sing-Li)",
-    "Diego Mello (https://github.com/diegolmello)"
-  ],
+  "repository": "https://github.com/zblash/Rocket.Chat.js.SDK-Mobile.git",
+  "author": "Yusuf Can (zblash) Celik",
   "license": "MIT",
   "private": false,
   "keywords": [
@@ -24,7 +16,8 @@
     "chat",
     "messaging",
     "CUI",
-    "typescript"
+    "typescript",
+    "mobile"
   ],
   "engines": {
     "node": "> 8.0.0",
