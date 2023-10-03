@@ -43,6 +43,7 @@ import { hostToWS } from "../util";
 import { sha256 } from "js-sha256";
 
 const userDisconnectCloseCode = 4000;
+const connectionAbortCloseCode = 1006;
 
 /** Websocket handler class, manages connections and subscriptions by DDP */
 export class Socket extends EventEmitter {
@@ -162,10 +163,9 @@ export class Socket extends EventEmitter {
   /** Emit close event so it can be used for promise resolve in close() */
   onClose = (e: any) => {
     this.emit("close", e);
-    console.log("onClose", e);
     this.isDisconnected = true;
     try {
-      if (e?.message === "Software caused connection abort") {
+      if (e?.code === connectionAbortCloseCode) {
         this.disconnectedBcsOfTimeout = true;
       }
       if (e?.code !== userDisconnectCloseCode) {
