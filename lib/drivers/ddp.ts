@@ -115,11 +115,7 @@ export class Socket extends EventEmitter {
         this.logger.error(err);
         return reject(err);
       }
-      if (
-        this.loggedInUser &&
-        this.isDisconnected &&
-        this.disconnectedBcsOfTimeout
-      ) {
+      if (this.loggedInUser && this.isDisconnected) {
         // if we are logged in and we are disconnected because of timeout, we will try to login again
         this.logger.debug("[ddp] Reconnecting because of timeout");
         this.login(this.loggedInUser)
@@ -132,7 +128,6 @@ export class Socket extends EventEmitter {
             );
           });
       }
-      this.disconnectedBcsOfTimeout = false;
       this.isDisconnected = false;
       this.connection = connection;
       this.connection.onmessage = this.onMessage.bind(this);
@@ -165,9 +160,6 @@ export class Socket extends EventEmitter {
     this.emit("close", e);
     this.isDisconnected = true;
     try {
-      if (e?.code === connectionAbortCloseCode) {
-        this.disconnectedBcsOfTimeout = true;
-      }
       if (e?.code !== userDisconnectCloseCode) {
         this.reopen();
       }
